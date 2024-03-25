@@ -1,5 +1,8 @@
 [package]
 name = "my_first_package"
+version = "0.0.2"
+# published-at = "0x46e422e85f1723c904dc03fd5a79b4aba9502565118c02af7c20bc790c95bafa"
+published-at = "0x5002cd448a09032dde85625d9d25961b7981f311907d19331c9530f37b0a0be9"
 
 # edition = "2024.alpha" # To use the Move 2024 edition, currently in alpha
 # license = ""           # e.g., "MIT", "GPL", "Apache 2.0"
@@ -36,3 +39,16 @@ my_first_package = "0x0"
 # and `--dev` modes.
 # alice = "0xB0B"
 
+# UpgradeCap
+# 0xcb42a26b098a5c09b28fe9b712933450b70209baa1ef849dc90f5196711b3959
+# 0xcb42a26b098a5c09b28fe9b712933450b70209baa1ef849dc90f5196711b3959
+
+# PackageID
+# 0x46e422e85f1723c904dc03fd5a79b4aba9502565118c02af7c20bc790c95bafa
+
+
+# Shared counter
+# 0x493478d0b3dab2804c0d130c1e0704851f301469aabefb891f34f516086bb10f
+
+# personal counter
+# 0x8629990e2fa1162ca5786054b544ed841a1c8e86d12dd2c0658db868b6d7441a

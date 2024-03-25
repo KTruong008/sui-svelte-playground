@@ -25,6 +25,15 @@ module my_first_package::my_module {
         transfer::share_object(public_counter);
     }
 
+    public fun create_counter(ctx: &mut TxContext) {
+        let counter = Counter {
+            id: object::new(ctx),
+            count: 0,
+            secondary_count: 0,
+        };
+        transfer::transfer(counter, tx_context::sender(ctx));
+    }
+
     public fun increment_count(counter: &mut Counter, _ctx: &mut TxContext): u64 {
         counter.count = counter.count + 1;
 
