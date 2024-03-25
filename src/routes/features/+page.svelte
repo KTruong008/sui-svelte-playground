@@ -1,8 +1,11 @@
 <script lang="ts">
+  import { getFullnodeUrl, SuiClient } from '@mysten/sui.js/client';
   import { walletState } from '@builders-of-stuff/svelte-sui-wallet-adapter';
 
   import Button from '$lib/components/ui/button/button.svelte';
   import { logWallet } from '$lib/shared/shared-tools';
+
+  const suiClient = new SuiClient({ url: getFullnodeUrl('devnet') });
 </script>
 
 <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -23,6 +26,9 @@
         <Button on:click={() => logWallet(walletState)} variant="secondary"
           >Log wallet data</Button
         >
+      </div>
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <Button on:click={() => logWallet(walletState)}>Something</Button>
       </div>
     </div>
   </div>
