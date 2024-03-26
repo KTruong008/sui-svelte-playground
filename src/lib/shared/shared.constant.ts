@@ -1,0 +1,7 @@
+export const what = 'sda';
+
+export const MY_FIRST_PACKAGE_ID =
+  '0x5002cd448a09032dde85625d9d25961b7981f311907d19331c9530f37b0a0be9';
+
+export const SHARED_COUNTER_ID =
+  '0x493478d0b3dab2804c0d130c1e0704851f301469aabefb891f34f516086bb10f';

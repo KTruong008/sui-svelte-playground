@@ -1,11 +1,71 @@
 <script lang="ts">
   import { getFullnodeUrl, SuiClient } from '@mysten/sui.js/client';
   import { walletState } from '@builders-of-stuff/svelte-sui-wallet-adapter';
+  import { TransactionBlock } from '@mysten/sui.js/transactions';
 
   import Button from '$lib/components/ui/button/button.svelte';
   import { logWallet } from '$lib/shared/shared-tools';
+  import { MY_FIRST_PACKAGE_ID } from '$lib/shared/shared.constant';
 
   const suiClient = new SuiClient({ url: getFullnodeUrl('devnet') });
+
+  const getOwnedObjects = async () => {
+    let response = suiClient
+      .getOwnedObjects({
+        owner: walletState.currentAccount ? walletState.currentAccount.address : ''
+        // filter: {
+        //   StructType: `${MY_FIRST_PACKAGE_ID}::my_module::Counter`
+        // }
+      })
+      .then((res) => {
+        console.log('res: ', res);
+      });
+  };
+
+  const createCounter = async () => {
+    const walletFeature =
+      walletState.currentWallet!.features['sui:signAndExecuteTransactionBlock'];
+
+    const tx = new TransactionBlock();
+    tx.moveCall({
+      target: `${MY_FIRST_PACKAGE_ID}::my_module::create_counter`,
+      arguments: []
+    });
+
+    // see useSignTransactionBlock for implementation details
+    let what = await walletFeature!.signAndExecuteTransactionBlock({
+      transactionBlock: tx as any,
+      account: walletState.currentAccount as any,
+      chain: walletState!.currentAccount!.chains[0],
+      options: {
+        showObjectChanges: true,
+        showEffects: true
+      }
+    });
+
+    console.log('what: ', what);
+
+    return what;
+    // return suiClient
+    //   .signAndExecuteTransactionBlock({
+    //     signer: '',
+    //     transactionBlock: tx,
+    //     requestType: 'WaitForLocalExecution',
+    //     options: {
+    //       showObjectChanges: true,
+    //       showEffects: true
+    //     }
+    //   })
+    //   .then((resp) => {
+    //     console.log('resp: ', resp);
+
+    //     return resp;
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     return undefined;
+    //   });
+  };
 </script>
 
 <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -28,7 +88,8 @@
         >
       </div>
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <Button on:click={() => logWallet(walletState)}>Something</Button>
+        <Button on:click={createCounter}>createCounter</Button>
+        <Button on:click={getOwnedObjects}>getObjects</Button>
       </div>
     </div>
   </div>
