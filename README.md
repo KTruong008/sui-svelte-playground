@@ -9,6 +9,7 @@ Contract is deployed on `devnet`, may need to be re-deployed periodically as `de
 ## Running
 
 `npm insall`
+
 `npm run dev`
 
 ## Publishing smart contract
