@@ -1,18 +1,15 @@
 <script lang="ts">
-  import { getFullnodeUrl, SuiClient } from '@mysten/sui.js/client';
-  import { walletState } from '@builders-of-stuff/svelte-sui-wallet-adapter';
+  import { walletAdapter } from '@builders-of-stuff/svelte-sui-wallet-adapter';
   import { TransactionBlock } from '@mysten/sui.js/transactions';
 
   import Button from '$lib/components/ui/button/button.svelte';
   import { logWallet } from '$lib/shared/shared-tools';
   import { MY_FIRST_PACKAGE_ID } from '$lib/shared/shared.constant';
 
-  const suiClient = new SuiClient({ url: getFullnodeUrl('devnet') });
-
   const getOwnedObjects = async () => {
-    let response = suiClient
+    let response = walletAdapter.suiClient
       .getOwnedObjects({
-        owner: walletState.currentAccount ? walletState.currentAccount.address : ''
+        owner: walletAdapter.currentAccount ? walletAdapter.currentAccount.address : ''
         // filter: {
         //   StructType: `${MY_FIRST_PACKAGE_ID}::my_module::Counter`
         // }
@@ -23,8 +20,8 @@
   };
 
   const createCounter = async () => {
-    const walletFeature =
-      walletState.currentWallet!.features['sui:signAndExecuteTransactionBlock'];
+    // const walletFeature =
+    //   walletAdapter.currentWallet!.features['sui:signAndExecuteTransactionBlock'];
 
     const tx = new TransactionBlock();
     tx.moveCall({
@@ -33,10 +30,10 @@
     });
 
     // see useSignTransactionBlock for implementation details
-    let what = await walletFeature!.signAndExecuteTransactionBlock({
+    let what = await walletAdapter.signAndExecuteTransactionBlock({
       transactionBlock: tx as any,
-      account: walletState.currentAccount as any,
-      chain: walletState!.currentAccount!.chains[0],
+      account: walletAdapter.currentAccount as any,
+      chain: walletAdapter!.currentAccount!.chains[0],
       options: {
         showObjectChanges: true,
         showEffects: true
@@ -83,7 +80,7 @@
         <Button on:click={disconnectWallet} variant="destructive">Disconnect</Button>
       </div> -->
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <Button on:click={() => logWallet(walletState)} variant="secondary"
+        <Button on:click={() => logWallet(walletAdapter)} variant="secondary"
           >Log wallet data</Button
         >
       </div>

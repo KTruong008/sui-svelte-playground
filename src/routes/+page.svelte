@@ -1,14 +1,11 @@
 <script lang="ts">
-  import { getFullnodeUrl, SuiClient } from '@mysten/sui.js/client';
-  import { walletState } from '@builders-of-stuff/svelte-sui-wallet-adapter';
+  import { walletAdapter } from '@builders-of-stuff/svelte-sui-wallet-adapter';
 
   import Button from '$lib/components/ui/button/button.svelte';
   import { logWallet } from '$lib/shared/shared-tools';
 
-  const suiClient = new SuiClient({ url: getFullnodeUrl('devnet') });
-
   const makeSuiCall = async (address: string) => {
-    let balance = await suiClient.getCoins({
+    let balance = await walletAdapter.suiClient.getCoins({
       owner: address
     });
 
@@ -16,15 +13,15 @@
   };
 
   const connectWallet = async () => {
-    await walletState.connectWallet();
+    await walletAdapter.connectWallet();
   };
 
   const disconnectWallet = async () => {
-    await walletState.disconnectWallet();
+    await walletAdapter.disconnectWallet();
   };
 
-  const consoleLogWalletState = () => {
-    logWallet(walletState);
+  const consoleLogWalletAdapter = () => {
+    logWallet(walletAdapter);
   };
 </script>
 
@@ -41,7 +38,7 @@
         <Button on:click={disconnectWallet} variant="destructive">Disconnect</Button>
       </div>
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <Button on:click={consoleLogWalletState} variant="secondary"
+        <Button on:click={consoleLogWalletAdapter} variant="secondary"
           >Log wallet data</Button
         >
       </div>
