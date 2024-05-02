@@ -19,14 +19,14 @@
       </div>
 
       <div class="flex gap-x-12">
-        <a href="/product" class="text-sm font-semibold leading-6 text-gray-900"
-          >Product</a
+        <a href="/page-one" class="text-sm font-semibold leading-6 text-gray-900"
+          >Page one</a
         >
-        <a href="/features" class="text-sm font-semibold leading-6 text-gray-900"
-          >Features</a
+        <a href="/page-two" class="text-sm font-semibold leading-6 text-gray-900"
+          >Page two</a
         >
-        <a href="/marketplace" class="text-sm font-semibold leading-6 text-gray-900"
-          >Marketplace</a
+        <a href="/page-three" class="text-sm font-semibold leading-6 text-gray-900"
+          >Page three</a
         >
       </div>
     </nav>
