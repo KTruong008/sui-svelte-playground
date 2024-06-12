@@ -1,7 +1,7 @@
 [package]
 name = "my_first_package"
 version = "0.0.2"
-published-at = "0x83750fbf8aaf6523548ae94f80fa48e5cfaf0fef147fe8c07dc9c7dc79a0f83c"
+published-at = "0x20c97eab2d52d552c43a475652276044aa2be6cc25f5eab98930f477bfa1c72d"
 
 # edition = "2024.alpha" # To use the Move 2024 edition, currently in alpha
 # license = ""           # e.g., "MIT", "GPL", "Apache 2.0"
@@ -39,7 +39,7 @@ my_first_package = "0x0"
 # alice = "0xB0B"
 
 # UpgradeCap
-# 0x57d94c8ebbfeea2da36ab0193bc1e36a3ba761078eb89d9ab2fe2b64a48b31e8
+# 0x1d88bc2d07b3ea4e2f717115bf9ce137d6652e39ecfa33614fd4054aba00aabd
 
 # PackageID
 # 0x46e422e85f1723c904dc03fd5a79b4aba9502565118c02af7c20bc790c95bafa

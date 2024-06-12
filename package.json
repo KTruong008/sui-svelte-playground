@@ -40,7 +40,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@builders-of-stuff/svelte-sui-wallet-adapter": "0.2.0",
+    "@builders-of-stuff/svelte-sui-wallet-adapter": "0.3.0",
     "@mysten/sui.js": "^0.51.0",
     "@sveltejs/kit": "^2.0.0",
     "bits-ui": "^0.20.1",
