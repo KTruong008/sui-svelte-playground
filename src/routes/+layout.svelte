@@ -22,9 +22,6 @@
         <a href="/page-one" class="text-sm font-semibold leading-6 text-gray-900"
           >Page one</a
         >
-        <a href="/page-two" class="text-sm font-semibold leading-6 text-gray-900"
-          >Page two</a
-        >
         <a href="/page-three" class="text-sm font-semibold leading-6 text-gray-900"
           >Page three</a
         >

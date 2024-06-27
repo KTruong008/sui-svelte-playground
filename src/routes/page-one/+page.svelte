@@ -1,6 +1,6 @@
 <script lang="ts">
   import { walletAdapter } from '@builders-of-stuff/svelte-sui-wallet-adapter';
-  import { TransactionBlock } from '@mysten/sui.js/transactions';
+  import { Transaction } from '@mysten/sui/transactions';
 
   import Button from '$lib/components/ui/button/button.svelte';
   import { logWallet } from '$lib/shared/shared-tools';
@@ -23,21 +23,28 @@
     // const walletFeature =
     //   walletAdapter.currentWallet!.features['sui:signAndExecuteTransactionBlock'];
 
-    const tx = new TransactionBlock();
+    const tx = new Transaction();
     tx.moveCall({
       target: `${MY_FIRST_PACKAGE_ID}::my_module::create_counter`,
       arguments: []
     });
 
     // see useSignTransactionBlock for implementation details
-    let what = await walletAdapter.signAndExecuteTransactionBlock({
-      transactionBlock: tx as any,
+    let what = await walletAdapter.signAndExecuteTransaction({
+      transaction: tx as any,
       account: walletAdapter.currentAccount as any,
       chain: walletAdapter!.currentAccount!.chains[0],
-      options: {
-        showObjectChanges: true,
-        showEffects: true
-      }
+      execute: async ({ bytes, signature }) =>
+        await walletAdapter.suiClient.executeTransactionBlock({
+          transactionBlock: bytes,
+          signature,
+          options: {
+            // Raw effects are required so the effects can be reported back to the wallet
+            showRawEffects: true,
+            // Select additional data to return
+            showObjectChanges: true
+          }
+        })
     });
 
     console.log('what: ', what);
