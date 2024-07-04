@@ -27,6 +27,28 @@
   const consoleLogWalletAdapter = () => {
     logWallet(walletAdapter);
   };
+
+  const getCoins = async () => {
+    let coins;
+
+    if (walletAdapter.currentAccount) {
+      coins = await makeSuiCall(walletAdapter.currentAccount.address);
+    }
+    console.log('coins: ', coins);
+  };
+
+  const getOwnedObjects = async () => {
+    let response = walletAdapter.suiClient
+      .getOwnedObjects({
+        owner: walletAdapter.currentAccount ? walletAdapter.currentAccount.address : ''
+        // filter: {
+        //   StructType: `${MY_FIRST_PACKAGE_ID}::my_module::Counter`
+        // }
+      })
+      .then((res) => {
+        console.log('res: ', res);
+      });
+  };
 </script>
 
 <div class="relative isolate px-6 pt-14 lg:px-8">
@@ -45,6 +67,16 @@
       <div class="mt-10 flex items-center justify-center gap-x-6">
         <Button on:click={consoleLogWalletAdapter} variant="secondary"
           >Log wallet data</Button
+        >
+      </div>
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <Button on:click={getCoins} variant="secondary"
+          >Get coins (JSON RPC call)</Button
+        >
+      </div>
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <Button on:click={getOwnedObjects} variant="secondary"
+          >Get owned objects (JSON RPC call)</Button
         >
       </div>
     </div>
