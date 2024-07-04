@@ -1,6 +1,6 @@
 export const what = 'sda';
 
-// Currently deployed on devnet 1.24.0 (May have already been wiped and require redeployment & update depending on date)
+// May have already been wiped and require redeployment & update depending on date
 export const MY_FIRST_PACKAGE_ID =
   '0xbe18c03ee1cb88131a97ff7810120f90091f95d289f722f5de8d9ee2c7a58d36';
 

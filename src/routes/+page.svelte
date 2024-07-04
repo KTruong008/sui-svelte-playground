@@ -1,7 +1,11 @@
 <script lang="ts">
-  import { walletAdapter } from '@builders-of-stuff/svelte-sui-wallet-adapter';
+  import {
+    ConnectButton,
+    walletAdapter
+  } from '@builders-of-stuff/svelte-sui-wallet-adapter';
 
-  import Button from '$lib/components/ui/button/button.svelte';
+  import { Button } from '$lib/components/ui/button/index.js';
+
   import { logWallet } from '$lib/shared/shared-tools';
 
   const makeSuiCall = async (address: string) => {
@@ -34,7 +38,8 @@
         commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
       </p>
       <div class="mt-10 flex items-center justify-center gap-x-6">
-        <Button on:click={connectWallet}>Connect</Button>
+        <!-- <Button on:click={connectWallet}>Connect</Button> -->
+        <ConnectButton {walletAdapter} />
         <Button on:click={disconnectWallet} variant="destructive">Disconnect</Button>
       </div>
       <div class="mt-10 flex items-center justify-center gap-x-6">
